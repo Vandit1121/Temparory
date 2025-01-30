@@ -1,0 +1,23 @@
+
+<div class="container" [ngClass]="{'active': isRegisterVisible}" id="container">
+  <!-- Register Form -->
+  <app-register *ngIf="isRegisterVisible"></app-register>
+
+  <!-- Login Form -->
+  <app-login *ngIf="!isRegisterVisible"></app-login>
+
+  <div class="toggle-container" >
+    <div class="toggle">
+      <div class="toggle-panel toggle-left">
+        <h1>Welcome Back!</h1>
+        <p>Enter your personal details to use all of the site features</p>
+        <button class="hidden" (click)="toggleForm()">Sign In</button>
+      </div>
+      <div class="toggle-panel toggle-right">
+        <h1>Hello, Friend!</h1>
+        <p>Register with your personal details to use all of the site features</p>
+        <button class="hidden" (click)="toggleForm()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>

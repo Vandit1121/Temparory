@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<div class="sign-up">
+  <p-card header="Sign-Up" [style]="{width : '400px'}">
+    <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+      <div class="field">
+        <label for="username">Username</label>
+        <p-inputgroup>
+          <p-inputgroup-addon><i class="pi pi-user"></i></p-inputgroup-addon>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="register.username"
+            id="username"
+            name="username"
+            class="w-full"
+            #username="ngModel"
+            required
+          />
+        </p-inputgroup>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <p-inputgroup>
+          <p-inputgroup-addon><i class="pi pi-envelope"></i></p-inputgroup-addon>
+          <input
+            type="email"
+            pInputText
+            [(ngModel)]="register.email"
+            id="email"
+            name="email"
+            class="w-full"
+            #email="ngModel"
+            required
+          />
+        </p-inputgroup>
+        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+          <span *ngIf="email.hasError('required')">Email is required</span>
+        </small>
+      </div>
+
+
+      <div class="field">
+        <label for="password">Password</label>
+        <p-inputgroup [style]="{width: '100%'}">
+          <p-inputgroup-addon><i class="pi pi-lock"></i></p-inputgroup-addon>
+          <p-password
+            [(ngModel)]="register.password"
+            [feedback]="false"
+            [toggleMask]="true"
+            inputId="password"
+            name="password"
+            #password="ngModel"
+            class="w-full" 
+            required
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}"
+          ></p-password>
+        </p-inputgroup>
+        <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
+          <span *ngIf="password.hasError('required')">Password is required</span>
+          <span *ngIf="password.hasError('pattern')">Password must be at least 8 characters long and include a mix of upper/lowercase letters, numbers, and symbols.</span>
+        </small>
+      </div>
+
+
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <p-inputgroup>
+          <p-inputgroup-addon><i class="pi pi-lock"></i></p-inputgroup-addon>
+          <p-password
+            [(ngModel)]="register.confirmPassword"
+            [feedback]="false"
+            [toggleMask]="true"
+            inputId="confirmPassword"
+            name="confirmPassword"
+            #confirmPassword="ngModel"
+            inputStyleClass="w-full"
+            styleClass="w-full"
+            required
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}"
+          ></p-password>
+        </p-inputgroup>
+        <small *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="block p-error">
+          <span *ngIf="confirmPassword.hasError('required')">Confirm Password is required</span>
+        </small>
+        <small *ngIf="register.confirmPassword && !passwordMismatchValidator()" class="block p-error" [style]="{ color: 'red' }">
+          Passwords do not match
+        </small>
+      </div>
+
+
+      <p-button
+        label="Sign-Up"
+        type="submit"
+        styleClass="w-full"
+        [disabled]="registerForm.invalid"
+        routerLink="/user-page"
+        class="bg-primary hover:bg-orange-700 border-round font-bold m-2"
+      ></p-button>
+
+      <div class="mt-3 flex justify-content-center align-items-center">
+        Already have an account? <a routerLink="/login">Login</a>
+      </div>
+    </form>
+  </p-card>
+</div>
+
+

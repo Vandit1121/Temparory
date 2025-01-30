@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  display: none;
+}
+
+.form-container.sign-up {
+  display: block;
+}
+
+.container.active .form-container.sign-up {
+  display: none;
+}
+
+.container.active .form-container.sign-in {
+  display: block;
+}
